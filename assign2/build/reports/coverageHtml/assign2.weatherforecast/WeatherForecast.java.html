@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>WeatherForecast.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assign2</a> &gt; <a href="index.source.html" class="el_package">assign2.weatherforecast</a> &gt; <span class="el_source">WeatherForecast.java</span></div><h1>WeatherForecast.java</h1><pre class="source lang-java linenums">package assign2.weatherforecast;
+
+import java.util.List;
+import java.util.*;
+import java.util.Optional;
+import static java.util.Comparator.*;
+import static java.util.stream.Collectors.*;
+
+<span class="fc" id="L9">public class WeatherForecast {</span>
+
+  WeatherService theService;
+
+  public void setWeatherService(WeatherService weatherService) {
+<span class="fc" id="L14">    theService = weatherService;</span>
+<span class="fc" id="L15">  }</span>
+
+  List&lt;WeatherDetails&gt; getSortedWeatherDetails(List&lt;WeatherDetails&gt; weatherData) {
+<span class="fc" id="L18">    return weatherData.stream()</span>
+<span class="fc" id="L19">                      .sorted(comparing(WeatherDetails::getCity))</span>
+<span class="fc" id="L20">                      .collect(toList());</span>
+  }
+
+  List&lt;String&gt; getHottestCities(List&lt;WeatherDetails&gt; weatherData) {
+<span class="fc" id="L24">    double hottestTemperature = </span>
+<span class="fc" id="L25">      weatherData.stream()</span>
+<span class="fc" id="L26">                 .mapToDouble(WeatherDetails::getTemperature)</span>
+<span class="fc" id="L27">                 .max()</span>
+<span class="fc" id="L28">                 .orElse(0.0);</span>
+    
+<span class="fc" id="L30">    return weatherData.stream()</span>
+<span class="fc" id="L31">                      .filter(data -&gt; data.getTemperature() == hottestTemperature)</span>
+<span class="fc" id="L32">                      .map(WeatherDetails::getCity)</span>
+<span class="fc" id="L33">                      .collect(toList());</span>
+  }
+
+  List&lt;String&gt; getColdestCities(List&lt;WeatherDetails&gt; weatherData) {
+<span class="fc" id="L37">    double coldestTemperature = </span>
+<span class="fc" id="L38">      weatherData.stream()</span>
+<span class="fc" id="L39">                 .mapToDouble(WeatherDetails::getTemperature)</span>
+<span class="fc" id="L40">                 .min()</span>
+<span class="fc" id="L41">                 .orElse(0.0);</span>
+    
+<span class="fc" id="L43">    return weatherData.stream()</span>
+<span class="fc" id="L44">                      .filter(data -&gt; data.getTemperature() == coldestTemperature)</span>
+<span class="fc" id="L45">                      .map(WeatherDetails::getCity)</span>
+<span class="fc" id="L46">                      .collect(toList());      </span>
+  }
+
+  private WeatherDetails getDataFromWeatherService(String city) {
+    try { 
+<span class="fc" id="L51">      return theService.getData(city); </span>
+    }
+<span class="fc" id="L53">    catch (Exception ex) { </span>
+<span class="fc" id="L54">      return new WeatherDetails(city, ex); </span>
+    }
+  }
+
+  public WeatherResults getWeatherData(List&lt;String&gt; cities) {
+
+<span class="fc" id="L60">    List&lt;WeatherDetails&gt; weatherData = cities.stream()</span>
+<span class="fc" id="L61">                                             .map( this::getDataFromWeatherService )</span>
+<span class="fc" id="L62">                                             .collect(toList()); </span>
+
+<span class="fc" id="L64">    List&lt;WeatherDetails&gt; weatherDataWithoutError = weatherData.stream()</span>
+<span class="fc" id="L65">                                                              .filter( cityWeatherData -&gt; !cityWeatherData.isError())</span>
+<span class="fc" id="L66">                                                              .collect( toList() );</span>
+   
+<span class="fc" id="L68">    List&lt;WeatherDetails&gt; weatherDataWithError = weatherData.stream()</span>
+<span class="fc" id="L69">                                                           .filter( WeatherDetails::isError )</span>
+<span class="fc" id="L70">                                                           .collect( toList() );</span>
+
+                                        
+<span class="fc" id="L73">    return new WeatherResults( </span>
+<span class="fc" id="L74">      getSortedWeatherDetails(weatherDataWithoutError),</span>
+<span class="fc" id="L75">      getHottestCities(weatherDataWithoutError),</span>
+<span class="fc" id="L76">      getColdestCities(weatherDataWithoutError),</span>
+      weatherDataWithError
+    );
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

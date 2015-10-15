@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MinesweeperGUI.groovy</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assign1</a> &gt; <a href="index.source.html" class="el_package">assign1.minesweeper.ui</a> &gt; <span class="el_source">MinesweeperGUI.groovy</span></div><h1>MinesweeperGUI.groovy</h1><pre class="source lang-java linenums">package assign1.minesweeper.ui
+
+import groovy.swing.SwingBuilder
+import java.awt.GridLayout
+import javax.swing.JFrame
+import javax.swing.*
+import java.awt.*
+import java.awt.event.*
+
+import assign1.minesweeper.*
+
+<span class="nc" id="L12">def minesweeper = Minesweeper.create()</span>
+<span class="nc" id="L13">SwingBuilder swing = new SwingBuilder()</span>
+
+<span class="nc" id="L15">def handleClick = { event -&gt; </span>
+  
+<span class="nc bnc" id="L17" title="All 2 branches missed.">  if(minesweeper.isGameInProgress()) {</span>
+
+<span class="nc bnc" id="L19" title="All 6 branches missed.">    String which = ((SwingUtilities.isRightMouseButton(event) || event.controlDown)) ? 'Right' : 'Left'</span>
+<span class="nc" id="L20">    JButton button = ( JButton ) event.getSource();</span>
+<span class="nc" id="L21">    String name = button.getName();</span>
+<span class="nc" id="L22">    def (rowString, columnString) = name.tokenize('-')</span>
+<span class="nc" id="L23">    Integer row = rowString.toInteger()</span>
+<span class="nc" id="L24">    Integer column = columnString.toInteger()   </span>
+    
+<span class="nc bnc" id="L26" title="All 6 branches missed.">    if( which == 'Left' &amp;&amp; minesweeper.stateOfCell(row, column) != Minesweeper.CellState.SEALED ) </span>
+<span class="nc" id="L27">        minesweeper.exposeCell(row, column) </span>
+
+<span class="nc bnc" id="L29" title="All 2 branches missed.">    if( which == 'Right') {</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">      if( minesweeper.stateOfCell(row, column) == Minesweeper.CellState.SEALED )</span>
+<span class="nc" id="L31">        minesweeper.unsealCell(row, column)</span>
+      else
+<span class="nc" id="L33">        minesweeper.sealCell(row, column)</span>
+    }
+
+<span class="nc" id="L36">    displayCells(minesweeper, swing)</span>
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    if( minesweeper.isGameWon() ) {</span>
+<span class="nc" id="L39">      JOptionPane.showMessageDialog(null, &quot;Game Won!&quot;)</span>
+    }
+
+<span class="nc bnc" id="L42" title="All 2 branches missed.">    if( minesweeper.isGameLost() ) {</span>
+<span class="nc" id="L43">      disableAllButtonsAndDisplayAllMines(minesweeper, swing)</span>
+<span class="nc" id="L44">        JOptionPane.showMessageDialog(null, &quot;Game Lost&quot;)</span>
+    }
+  }
+}
+
+<span class="nc" id="L49">frame = swing.frame(title: &quot;Minesweeper&quot;, defaultCloseOperation: JFrame.EXIT_ON_CLOSE, pack: true, show: true) {</span>
+
+<span class="nc" id="L51">  panel(layout: new GridLayout(minesweeper.SIZE, minesweeper.SIZE)) {</span>
+
+<span class="nc" id="L53">    (0..&lt; minesweeper.SIZE).each { row -&gt;</span>
+<span class="nc" id="L54">      (0..&lt; minesweeper.SIZE).each { column -&gt;</span>
+<span class="nc" id="L55">        def buttonID = &quot;$row-$column&quot;</span>
+<span class="nc" id="L56">        button = button(id: buttonID, '', mouseReleased: handleClick) </span>
+      }
+    }
+  }
+}
+<span class="nc" id="L61">frame.setSize(500, 500)</span>
+
+
+def displayCells(minesweeper, swing) {
+<span class="nc" id="L65">  (0..&lt; minesweeper.SIZE).each { row -&gt;</span>
+<span class="nc" id="L66">    (0..&lt; minesweeper.SIZE).each { column -&gt;</span>
+<span class="nc" id="L67">      JButton currentButton = swing.&quot;$row-$column&quot;</span>
+<span class="nc" id="L68">      String displayText = &quot;&quot;</span>
+<span class="nc bnc" id="L69" title="All 10 branches missed.">      if( minesweeper.stateOfCell(row, column) == Minesweeper.CellState.EXPOSED ) {</span>
+<span class="nc" id="L70">        currentButton.setEnabled(false)</span>
+
+<span class="nc bnc" id="L72" title="All 16 branches missed.">      if( !minesweeper.isCellMined(row, column) &amp;&amp; minesweeper.isCellAdjacent(row, column) )</span>
+<span class="nc" id="L73">        displayText = minesweeper.countAdjacentMines(row, column).toString()</span>
+
+<span class="nc bnc" id="L75" title="All 4 branches missed.">      if( minesweeper.isCellMined(row, column))</span>
+<span class="nc" id="L76">      displayText = &quot;M&quot;</span>
+      }
+
+<span class="nc bnc" id="L79" title="All 10 branches missed.">      if( minesweeper.stateOfCell(row, column) == Minesweeper.CellState.SEALED ) {</span>
+<span class="nc" id="L80">        displayText = &quot;S&quot;</span>
+      }
+
+<span class="nc" id="L83">      currentButton.setText(displayText) </span>
+    }
+  }
+}
+
+def disableAllButtonsAndDisplayAllMines(minesweeper, swing) {
+<span class="nc" id="L89">  (0..&lt; minesweeper.SIZE).each { row -&gt;</span>
+<span class="nc" id="L90">    (0..&lt; minesweeper.SIZE).each { column -&gt;</span>
+<span class="nc" id="L91">      JButton currentButton = swing.&quot;$row-$column&quot;</span>
+<span class="nc" id="L92">      currentButton.setEnabled(false) </span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">      if( minesweeper.isCellMined(row, column))</span>
+<span class="nc" id="L94">        currentButton.setText(&quot;M&quot;)</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>

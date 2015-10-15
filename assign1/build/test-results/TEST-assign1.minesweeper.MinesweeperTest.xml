@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="assign1.minesweeper.MinesweeperTest" tests="39" skipped="0" failures="0" errors="0" timestamp="2015-03-03T16:06:04" hostname="Dineshs-MacBook-Pro.local" time="1.908">
+  <properties/>
+  <testcase name="canary" classname="assign1.minesweeper.MinesweeperTest" time="0.77"/>
+  <testcase name="an unexposed cell can be exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.261"/>
+  <testcase name="when we call expose on an exposed cell, it remains exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.06"/>
+  <testcase name="exposeCell should throw an exception if out of bounds" classname="assign1.minesweeper.MinesweeperTest" time="0.051"/>
+  <testcase name="when a cell is exposed, its neighboring cell may be exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.007"/>
+  <testcase name="when an unexposed cell is exposed, it does not try to expose itself again" classname="assign1.minesweeper.MinesweeperTest" time="0.007"/>
+  <testcase name="when a exposed cell is exposed, it doesn't try to expose any cell" classname="assign1.minesweeper.MinesweeperTest" time="0.007"/>
+  <testcase name="trytoExpose should not call expose if out of bounds" classname="assign1.minesweeper.MinesweeperTest" time="0.034"/>
+  <testcase name="tryToExpose will expose a valid cell" classname="assign1.minesweeper.MinesweeperTest" time="0.021"/>
+  <testcase name="an unexposed cell can be sealed" classname="assign1.minesweeper.MinesweeperTest" time="0.01"/>
+  <testcase name="an exposed cell cannot be sealed" classname="assign1.minesweeper.MinesweeperTest" time="0.027"/>
+  <testcase name="a sealed cell cannot be exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.004"/>
+  <testcase name="sealCell should throw an exception if out of bounds" classname="assign1.minesweeper.MinesweeperTest" time="0.009"/>
+  <testcase name="when expose is called on a sealed cell, it does not call trytoExpose" classname="assign1.minesweeper.MinesweeperTest" time="0.006"/>
+  <testcase name="a sealed cell can be unsealed" classname="assign1.minesweeper.MinesweeperTest" time="0.007"/>
+  <testcase name="when we call sealCell on a sealed cell, it remains sealed" classname="assign1.minesweeper.MinesweeperTest" time="0.005"/>
+  <testcase name="unsealCell should throw an exception if out of bounds" classname="assign1.minesweeper.MinesweeperTest" time="0.011"/>
+  <testcase name="when we call unsealCell on an exposed cell, it remains exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.047"/>
+  <testcase name="when we call unsealCell on an unexposed cell, it remains unexposed" classname="assign1.minesweeper.MinesweeperTest" time="0.003"/>
+  <testcase name="when expose is called on a mined cell, it does not call trytoExpose" classname="assign1.minesweeper.MinesweeperTest" time="0.005"/>
+  <testcase name="countAdjacentMines will return zero, if there is no mine in its neighboring cells" classname="assign1.minesweeper.MinesweeperTest" time="0.004"/>
+  <testcase name="countAdjacentMines will return one if there is one mine in its neighboring cells" classname="assign1.minesweeper.MinesweeperTest" time="0.004"/>
+  <testcase name="countAdjacentMines will return eight if there are eight mines in its neighboring cells" classname="assign1.minesweeper.MinesweeperTest" time="0.005"/>
+  <testcase name="countAdjacentMines for a cell in the corner with all adjacent mines returns three" classname="assign1.minesweeper.MinesweeperTest" time="0.003"/>
+  <testcase name="countAdjacentMines for a cell on the edge with all adjacent mines returns five" classname="assign1.minesweeper.MinesweeperTest" time="0.003"/>
+  <testcase name="A cell is adjacent, if it is next to one or more mined cells" classname="assign1.minesweeper.MinesweeperTest" time="0.004"/>
+  <testcase name="An empty cell has no mine and is not next to a mined cell" classname="assign1.minesweeper.MinesweeperTest" time="0.042"/>
+  <testcase name="mined cell is not an empty cell" classname="assign1.minesweeper.MinesweeperTest" time="0.009"/>
+  <testcase name="a cell next to a mined cell is not empty" classname="assign1.minesweeper.MinesweeperTest" time="0.004"/>
+  <testcase name="when expose is called on an adjacent cell, it does not call trytoExpose" classname="assign1.minesweeper.MinesweeperTest" time="0.025"/>
+  <testcase name="there are 10 mines in the game" classname="assign1.minesweeper.MinesweeperTest" time="0.092"/>
+  <testcase name="setRandomMines places mines at random" classname="assign1.minesweeper.MinesweeperTest" time="0.022"/>
+  <testcase name="user gets a well initialized minesweeper on create" classname="assign1.minesweeper.MinesweeperTest" time="0.034"/>
+  <testcase name="game in progress at start" classname="assign1.minesweeper.MinesweeperTest" time="0.026"/>
+  <testcase name="game is lost when a mine cell is exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.005"/>
+  <testcase name="game won when all mines are sealed and all other cells are exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.2"/>
+  <testcase name="game not won when all mines are sealed and all other cells are not exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.01"/>
+  <testcase name="game not won when all mines are not sealed and all other cells are exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.004"/>
+  <testcase name="game not won when all mines are not sealed and all other cells are not exposed" classname="assign1.minesweeper.MinesweeperTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

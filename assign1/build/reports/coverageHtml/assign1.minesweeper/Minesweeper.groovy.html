@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Minesweeper.groovy</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">assign1</a> &gt; <a href="index.source.html" class="el_package">assign1.minesweeper</a> &gt; <span class="el_source">Minesweeper.groovy</span></div><h1>Minesweeper.groovy</h1><pre class="source lang-java linenums">package assign1.minesweeper
+
+class Minesweeper {
+
+  enum CellState { UNEXPOSED, EXPOSED, SEALED } 
+
+  private final def SIZE = 10
+
+  def state = new CellState[SIZE][SIZE]
+  def mines = new boolean[SIZE][SIZE]
+  
+  def Minesweeper() {
+<span class="fc" id="L13">    (0..9).each { i -&gt;</span>
+<span class="pc" id="L14">      (0..9).each { j -&gt;</span>
+<span class="fc" id="L15">        state[i][j] = CellState.UNEXPOSED</span>
+<span class="pc" id="L16">        mines[i][j] = false</span>
+      }
+    }
+  }
+
+  def setRandomMines() {
+<span class="fc" id="L22">    def rand = new Random()</span>
+<span class="fc" id="L23">    def numberOfRandomMines = 0</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">    while( numberOfRandomMines &lt; SIZE ) {</span>
+<span class="fc" id="L25">      def randomRow = rand.nextInt(SIZE)</span>
+<span class="fc" id="L26">      def randomColumn = rand.nextInt(SIZE)</span>
+<span class="fc bfc" id="L27" title="All 4 branches covered.">      if( !isCellMined(randomRow, randomColumn) ) {</span>
+<span class="fc" id="L28">        mines[randomRow][randomColumn] = true</span>
+<span class="pc" id="L29">        numberOfRandomMines++</span>
+      }
+    }
+  }
+
+  static def create() {
+<span class="fc" id="L35">    Minesweeper minesweeper = new Minesweeper()</span>
+<span class="fc" id="L36">    minesweeper.setRandomMines()</span>
+<span class="pc" id="L37">    minesweeper</span>
+  }
+
+  def verifyBounds( row, column ) {
+<span class="fc bfc" id="L41" title="All 4 branches covered.">   if(!isInRange(row, column)) </span>
+<span class="pc" id="L42">     throw new IndexOutOfBoundsException(&quot;Index out of Bounds&quot;)</span>
+  }
+
+  def isInRange(row, column){
+<span class="pc bpc" id="L46" title="17 of 32 branches missed.">    row &gt;= 0 &amp;&amp; row &lt; SIZE &amp;&amp; column &gt;= 0 &amp;&amp; column &lt; SIZE</span>
+  }
+  
+  def exposeCell( row, column ) {
+
+<span class="fc" id="L51">    verifyBounds( row, column )</span>
+
+<span class="pc bpc" id="L53" title="6 of 10 branches missed.">    if( state[row][column] == CellState.UNEXPOSED ) {</span>
+<span class="pc" id="L54">      state[row][column] = CellState.EXPOSED    </span>
+      
+<span class="pc bpc" id="L56" title="2 of 4 branches missed.">      if( isCellEmpty( row, column ) ) {</span>
+<span class="pc" id="L57">        (-1..1 ).each { rowOffset -&gt;</span>
+<span class="pc" id="L58">          (-1..1 ).each { columnOffset -&gt;</span>
+<span class="pc bpc" id="L59" title="10 of 20 branches missed.">            if( rowOffset != 0 || columnOffset != 0 )</span>
+<span class="pc" id="L60">              trytoExpose(row + rowOffset, column + columnOffset)            </span>
+          }
+        }
+      }
+    }
+  }
+
+  def stateOfCell(row, column) {
+<span class="pc" id="L68">    state[row][column]</span>
+  }
+
+  def trytoExpose(row, column) {
+<span class="fc bfc" id="L72" title="All 2 branches covered.">    if( isInRange(row, column) ) </span>
+<span class="pc" id="L73">      exposeCell(row, column) </span>
+  }
+
+  def sealCell(row, column) {
+<span class="fc" id="L77">    verifyBounds(row, column)</span>
+<span class="pc bpc" id="L78" title="6 of 10 branches missed.">    if(state[row][column] == CellState.UNEXPOSED ) </span>
+<span class="pc" id="L79">      state[row][column] = CellState.SEALED</span>
+  }
+
+  def unsealCell(row, column) {
+<span class="fc" id="L83">    verifyBounds(row, column)</span>
+<span class="pc bpc" id="L84" title="6 of 10 branches missed.">    if(state[row][column] == CellState.SEALED )</span>
+<span class="pc" id="L85">      state[row][column] = CellState.UNEXPOSED</span>
+  } 
+  
+  def isCellMined(row, column) {
+<span class="pc" id="L89">    mines[row][column]</span>
+  }
+  
+  def countAdjacentMines(row, column) {
+<span class="fc" id="L93">    def count = 0</span>
+<span class="fc" id="L94">    (-1..1 ).each { rowOffset -&gt;</span>
+<span class="pc" id="L95">      (-1..1 ).each { columnOffset -&gt;</span>
+<span class="pc bpc" id="L96" title="10 of 20 branches missed.">        if( rowOffset != 0 || columnOffset != 0 )</span>
+<span class="pc bpc" id="L97" title="6 of 12 branches missed.">          if( isInRange(row + rowOffset, column + columnOffset) &amp;&amp; isCellMined(row + rowOffset, column + columnOffset) )</span>
+<span class="pc" id="L98">             count++            </span>
+     }
+    }
+<span class="pc" id="L101">    count</span>
+  }
+
+  def isCellAdjacent(row, column) {
+<span class="pc bpc" id="L105" title="5 of 8 branches missed.">    countAdjacentMines(row, column) &gt; 0</span>
+  }
+
+  def isCellEmpty(row, column) {
+<span class="pc bpc" id="L109" title="12 of 22 branches missed.">    !isCellMined(row, column) &amp;&amp; !isCellAdjacent(row, column)</span>
+  }
+
+  def isGameWon() {
+<span class="fc" id="L113">    def sealedMineCount = 0</span>
+<span class="fc" id="L114">    def unminedExposedCount = 0</span>
+
+<span class="fc" id="L116">    (0..SIZE-1).each { row -&gt;</span>
+<span class="pc" id="L117">      (0..SIZE-1).each { column -&gt;</span>
+<span class="pc bpc" id="L118" title="9 of 18 branches missed.">        if( isCellMined(row, column) &amp;&amp; state[row][column] == CellState.SEALED)</span>
+<span class="pc" id="L119">          sealedMineCount++</span>
+<span class="pc bpc" id="L120" title="8 of 16 branches missed.">        else if( !isCellMined(row, column) &amp;&amp; state[row][column] == CellState.EXPOSED)</span>
+<span class="pc" id="L121">          unminedExposedCount++</span>
+      }
+    }
+
+<span class="pc bpc" id="L125" title="8 of 14 branches missed.">    sealedMineCount == SIZE &amp;&amp; unminedExposedCount == (SIZE*SIZE - SIZE)</span>
+  }
+
+  def isGameLost() {
+<span class="fc" id="L129">    def gameLost = false</span>
+<span class="fc" id="L130">    (0..SIZE-1).each { row -&gt;</span>
+<span class="pc" id="L131">      (0..SIZE-1).each { column -&gt;</span>
+<span class="pc bpc" id="L132" title="10 of 18 branches missed.">        if( isCellMined(row, column) &amp;&amp; state[row][column] == CellState.EXPOSED)</span>
+<span class="pc" id="L133">          gameLost = true</span>
+      }
+    }
+<span class="pc" id="L136">    gameLost</span>
+  }
+
+  def isGameInProgress() {
+<span class="pc bpc" id="L140" title="16 of 22 branches missed.">    !isGameLost() &amp;&amp; !isGameWon()</span>
+  }
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.1.201405082137</span></div></body></html>
