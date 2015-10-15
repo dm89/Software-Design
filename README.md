@@ -1,6 +1,6 @@
 # Software-Design
 
-#### assign 1 - Minesweeper Game.
+#### assign 1 - Minesweeper Game
 Using Test First Development (no code without test first), we implemented the minesweeper game in Groovy.
 
 The object of the game is for a player to find and seal all ten hidden 
@@ -44,7 +44,8 @@ There are two outcomes of the game. The player wins after sealing all the
 mines and exposing all the other cells. The player loses if a mined cell 
 is exposed.
 
-#### assign 2 - A console application to obtain weather data for cities using Test Driven Development with JMock and JUnit in Java.
+#### assign 2 - Weather application
+A console application to obtain weather data for cities using Test Driven Development with JMock and JUnit in Java.
 
 The openweathermap.org site provides weather data. We can access, for example,
 the weather in Houston, by sending a request to
