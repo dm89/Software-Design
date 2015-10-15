@@ -1,8 +1,8 @@
 # Software-Design
 
-### assign 1 - Using Test First Development (no code without test first) implement the minesweeper game in Groovy.
+#### assign 1 - Using Test First Development (no code without test first) implement the minesweeper game in Groovy.
 
-### assign 2 - The openweathermap.org site provides weather data. We can access, for example,
+#### assign 2 - The openweathermap.org site provides weather data. We can access, for example,
 the weather in Houston, by sending a request to
 
 http://api.openweathermap.org/data/2.5/weather?q=Houston,us&units=imperial
