@@ -44,7 +44,9 @@ There are two outcomes of the game. The player wins after sealing all the
 mines and exposing all the other cells. The player loses if a mined cell 
 is exposed.
 
-#### assign 2 - The openweathermap.org site provides weather data. We can access, for example,
+#### assign 2 - A console application to obtain weather data for cities using Test Driven Development with JMock and JUnit in Java.
+
+The openweathermap.org site provides weather data. We can access, for example,
 the weather in Houston, by sending a request to
 
 http://api.openweathermap.org/data/2.5/weather?q=Houston,us&units=imperial
