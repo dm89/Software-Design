@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="assign2.weatherforecast.WeatherForecastTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2015-03-13T04:34:49" hostname="Dineshs-MacBook-Pro.local" time="4.926">
+<testsuite name="assign2.weatherforecast.WeatherForecastTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2015-10-16T20:17:14" hostname="Dineshs-MacBook-Pro.local" time="0.417">
   <properties/>
-  <testcase name="testSortByCity" classname="assign2.weatherforecast.WeatherForecastTest" time="1.422"/>
-  <testcase name="testGetHottestCityWithEmptyData" classname="assign2.weatherforecast.WeatherForecastTest" time="0.126"/>
-  <testcase name="testGetColdestCityWithThreeColdestCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.006"/>
-  <testcase name="testGetSortedWeatherDetailsWithEmptyInput" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
-  <testcase name="testGetColdestCityWithEmptyData" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
-  <testcase name="testGetAllWeatherDataWhenServiceHasError" classname="assign2.weatherforecast.WeatherForecastTest" time="3.161"/>
-  <testcase name="testGetAllWeatherDataForNoInputCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
-  <testcase name="testGetColdestCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
-  <testcase name="testGetHottestCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.006"/>
-  <testcase name="testSortByCityPresortedData" classname="assign2.weatherforecast.WeatherForecastTest" time="0.005"/>
-  <testcase name="testGetColdestCityWhenOnlyOneCityPresent" classname="assign2.weatherforecast.WeatherForecastTest" time="0.003"/>
-  <testcase name="testGetAllWeatherDataForThreeInputCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.002"/>
+  <testcase name="testSortByCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.093"/>
+  <testcase name="testGetHottestCityWithEmptyData" classname="assign2.weatherforecast.WeatherForecastTest" time="0.01"/>
+  <testcase name="testGetColdestCityWithThreeColdestCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.004"/>
+  <testcase name="testGetSortedWeatherDetailsWithEmptyInput" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
+  <testcase name="testGetColdestCityWithEmptyData" classname="assign2.weatherforecast.WeatherForecastTest" time="0.003"/>
+  <testcase name="testGetAllWeatherDataWhenServiceHasError" classname="assign2.weatherforecast.WeatherForecastTest" time="0.262"/>
+  <testcase name="testGetAllWeatherDataForNoInputCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.002"/>
+  <testcase name="testGetColdestCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
+  <testcase name="testGetHottestCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
+  <testcase name="testSortByCityPresortedData" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
+  <testcase name="testGetColdestCityWhenOnlyOneCityPresent" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
+  <testcase name="testGetAllWeatherDataForThreeInputCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.004"/>
   <testcase name="testGetHottestCityWhenOnlyOneCityPresent" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
   <testcase name="testGetColdestCityWithTwoColdestCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
-  <testcase name="testGetAllWeatherDataWhenServiceHasErrorOnOneCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.018"/>
+  <testcase name="testGetAllWeatherDataWhenServiceHasErrorOnOneCity" classname="assign2.weatherforecast.WeatherForecastTest" time="0.006"/>
   <testcase name="testGetSortedWeatherDetailsWithSingleInput" classname="assign2.weatherforecast.WeatherForecastTest" time="0.001"/>
-  <testcase name="testGetHottestCityWithThreeHottestCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.003"/>
+  <testcase name="testGetHottestCityWithThreeHottestCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
   <testcase name="testGetHottestCityWithTwoHottestCities" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
-  <testcase name="Canary" classname="assign2.weatherforecast.WeatherForecastTest" time="0.024"/>
+  <testcase name="Canary" classname="assign2.weatherforecast.WeatherForecastTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

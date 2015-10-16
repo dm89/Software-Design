@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class WeatherWebService implements WeatherService {
   
   protected InputStream obtainURLforAPI(String city) throws IOException {
-    String url = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=imperial";
+    String url = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=imperial&appid=0e2a60aad888c1b78b8e73acaf987b57";
     return new URL(String.format(url, city)).openStream();
   }
 

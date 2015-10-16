@@ -80,7 +80,7 @@ public class WeatherWebServiceTest {
 
   @Test
   public void testGetDataWithInvalidCity() {
-    WeatherDetails weatherDetails = webService.getData("1");
+    WeatherDetails weatherDetails = webService.getData("");
     assertTrue( weatherDetails.isError() );
   }
 
