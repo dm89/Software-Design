@@ -45,7 +45,7 @@ mines and exposing all the other cells. The player loses if a mined cell
 is exposed.
 
 #### assign 2 - Weather application
-A console application to obtain weather data for cities using Test Driven Development with JMock and JUnit in Java.
+A console application to obtain weather data for cities using Test Driven Development with JUnit and Mockito in Java.
 
 The openweathermap.org site provides weather data. We can access, for example,
 the weather in Houston, by sending a request to
