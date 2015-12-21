@@ -50,7 +50,7 @@ A console application to obtain weather data for cities using Test Driven Develo
 The openweathermap.org site provides weather data. We can access, for example,
 the weather in Houston, by sending a request to
 
-http://api.openweathermap.org/data/2.5/weather?q=Houston,us&units=imperial&appid=bd82977b86bf27fb59a04b61b657fb6f
+http://api.openweathermap.org/data/2.5/weather?q=Houston,us&units=imperial&appid=2de143494c0b295cca9337e1e96b00e0
 
 This program will read from a file a list of cities. It will then get the temperature and the current condition (for example, sunny or cloudy) from the webservice mentioned above. The program will then display, in sorted order of the city name, the current temperature and the weather condition. 
 It will also report the hottest city and the coldest city.
